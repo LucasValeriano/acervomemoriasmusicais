@@ -999,34 +999,7 @@
                                 </div>
                                 <span class="pxp-error-text" id="pxpWhatsappError">Por favor, insira seu WhatsApp com DDD</span>
                             </div>
-                            
-                            <!-- ORDERBUMP ACESSO VITALICIO -->
-                            <div class="pxp-orderbump-container">
-                                <label class="pxp-orderbump-label" for="pxpOrderBump">
-                                    <input type="checkbox" id="pxpOrderBump" class="pxp-orderbump-checkbox">
-                                    <span class="pxp-orderbump-checkbox-custom"></span>
-                                    <div class="pxp-orderbump-content" style="flex: 1;">
-                                        <span class="pxp-orderbump-badge">RECOMENDADO</span>
-                                        <span class="pxp-orderbump-title">Acesso Vitalício + R$ 9,90</span>
-                                        <p class="pxp-orderbump-text">Tenha acesso vitalício do produto para sempre!</p>
-                                    </div>
-                                    <img src="https://api-pix-modal-php.vercel.app/lifetime_badge.png" alt="Acesso Vitalício" class="pxp-orderbump-image">
-                                </label>
-                            </div>
-
-                            <!-- ORDERBUMP GRUPO VIP WHATSAPP -->
-                            <div class="pxp-orderbump-container" style="margin-top: 6px;">
-                                <label class="pxp-orderbump-label" for="pxpOrderBumpWhats">
-                                    <input type="checkbox" id="pxpOrderBumpWhats" class="pxp-orderbump-checkbox">
-                                    <span class="pxp-orderbump-checkbox-custom"></span>
-                                    <div class="pxp-orderbump-content" style="flex: 1;">
-                                        <span class="pxp-orderbump-badge" style="background-color: #25D366;">GRUPO VIP</span>
-                                        <span class="pxp-orderbump-title">Grupo VIP no WhatsApp + R$ 14,90</span>
-                                        <p class="pxp-orderbump-text">Entre para o nosso grupo VIP no whatsapp para receber novas atualização e fazer NETWORKING.</p>
-                                    </div>
-                                    <img src="https://api-pix-modal-php.vercel.app/whatsapp_vip_group.png" alt="Grupo VIP WhatsApp" class="pxp-orderbump-image">
-                                </label>
-                            </div>
+                            <!-- Planos adicionais removidos -->
                             
                             <button type="submit" class="pxp-btn pxp-btn-pulse" id="pxpSubmitBtn">
                                 <span>Gerar PIX - R$ 99,00</span>
