@@ -1337,11 +1337,6 @@
          font-size: 0.8rem;
        }
      }
-
-      /* Classe utilitária para Delay de VSL (VTurb) */
-      .esconder, .vturb-delay {
-        display: none !important;
-      }
   </style>
 </head>
 <body class="bar-visible">
@@ -1375,55 +1370,40 @@
   <!-- =============================================
        CONFIGURAÇÃO DOS LINKS DE CHECKOUT
        ============================================= -->
-  <!-- =============================================
-       CONFIGURAÇÃO DA API PIX PARADISE
-       ============================================= -->
   <script>
+    // =============================================
+    // CHECKOUT LINKS — edite apenas aqui
+    // =============================================
+
+    // Checkout Essencial — R$ 9,90
+    var CHECKOUT_ESSENCIAL_URL = "https://seu-checkout.com/essencial";
+
+    // Checkout Premium — R$ 37,00
+    var CHECKOUT_PREMIUM_URL = "https://seu-checkout.com/premium";
+
+    // Checkout Premium com Desconto no Popup — R$ 25,90
+    var CHECKOUT_PREMIUM_DESCONTO_URL = "https://seu-checkout.com/desconto-premium";
+
+    // Aplica os hrefs reais nos botões para que UTMify possa
+    // propagar parâmetros normalmente via atributo href.
     document.addEventListener('DOMContentLoaded', function () {
-      // 1. Configura o botão do plano Premium para abrir o modal de R$ 99,00
-      document.querySelectorAll('.btn-premium').forEach(function (el) {
-        el.setAttribute('data-pix-trigger', '');
-        el.setAttribute('data-pix-price', '99.00');
-        el.setAttribute('data-pix-plan', 'Acervo Flashback Completo');
-      });
-
-      // 2. Configura os botões do modal de Upsell
-      document.querySelectorAll('.btn-upsell-accept').forEach(function (el) {
-        el.setAttribute('data-pix-trigger', '');
-        el.setAttribute('data-pix-price', '25.90');
-        el.setAttribute('data-pix-plan', 'Acervo Completo (Desconto Upsell)');
-      });
-
-      document.querySelectorAll('.btn-upsell-decline').forEach(function (el) {
-        el.setAttribute('data-pix-trigger', '');
-        el.setAttribute('data-pix-price', '9.90');
-        el.setAttribute('data-pix-plan', 'Acervo Essencial');
-        
-        // Sobrescreve o clique para fechar a modal de upsell e abrir o modal do Pix
+      document.querySelectorAll('.btn-essencial').forEach(function (el) {
+        el.setAttribute('href', CHECKOUT_ESSENCIAL_URL);
         el.addEventListener('click', function(e) {
           e.preventDefault();
-          closeUpsellModal();
-          if (typeof window.openPixModal === 'function') {
-            window.openPixModal(9.90, 'Acervo Essencial');
-          }
+          openUpsellModal();
         });
       });
+      document.querySelectorAll('.btn-premium').forEach(function (el) {
+        el.setAttribute('href', CHECKOUT_PREMIUM_URL);
+      });
+      document.querySelectorAll('.btn-upsell-accept').forEach(function (el) {
+        el.setAttribute('href', CHECKOUT_PREMIUM_DESCONTO_URL);
+      });
+      document.querySelectorAll('.btn-upsell-decline').forEach(function (el) {
+        el.setAttribute('href', CHECKOUT_ESSENCIAL_URL);
+      });
 
-      // 3. Integração de hash / link para botões da VTurb/VSL
-      function checkHashAndOpen() {
-        var hash = window.location.hash.toLowerCase();
-        if (hash === '#open-pix-modal' || hash === '#checkout' || hash === '#pix') {
-          if (typeof window.openPixModal === 'function') {
-            window.openPixModal(99.00, 'Acervo Flashback Completo');
-          }
-        }
-      }
-      window.addEventListener('hashchange', checkHashAndOpen);
-      setTimeout(checkHashAndOpen, 1000); // Executa um delay pós-carregamento
-    });
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
       // Fecha ao clicar fora da modal container
       var modal = document.getElementById('upsellModal');
       if (modal) {
@@ -1540,14 +1520,6 @@
         <p class="hero-sub">
           Como uma verdadeira gravadora clássica, preservamos o melhor da memória musical histórica: Mais de 650 horas de músicas inesquecíveis dos anos 70, 80 e 90, com a opção de levar também as coleções exclusivas de Rock, Pagode, Disco, Românticas e Dance em um único pacote.
         </p>
-
-        <!-- VTURB VSL VIDEO PLAYER EMBED -->
-        <!-- Cole o código de embed do seu player da VTurb dentro da div abaixo -->
-        <div class="vsl-video-container" style="max-width: 560px; margin: 0 auto 24px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);">
-          <!-- Exemplo de Embed da VTurb:
-          <div id="vid_669fec8f0293db000b0800b4" style="position:relative;width:100%;padding: 56.25% 0 0;"><img id="thumb_669fec8f0293db000b0800b4" src="https://images.converteai.net/.../thumbnail.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;"><div id="backdrop_669fec8f0293db000b0800b4" style="position:absolute;top:0;left:0;width:100%;height:100%;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);"></div></div><script type="text/javascript" id="scr_669fec8f0293db000b0800b4" async>var s=document.createElement("script");s.src="https://scripts.converteai.net/embed.js",s.async=!0,document.head.appendChild(s);</script>
-          -->
-        </div>
 
         <!-- Imagem principal do produto -->
         <div class="hero-img-wrap" style="margin-left:auto;margin-right:auto;">
@@ -1864,8 +1836,7 @@
             <li>Acesso vitalício</li>
           </ul>
 
-          <p class="plan-old-price" style="margin-top:10px;">De R$ 197,00</p>
-          <div class="plan-price">R$ 99,00</div>
+          <div class="plan-price">R$ 9,90</div>
           <p class="plan-price-note">Pagamento único</p>
 
           <a href="#" class="btn btn-outline btn-full btn-essencial" style="margin-top:8px;">
@@ -1898,12 +1869,12 @@
             Além das 650 horas de flashbacks, você recebe mais de 600 músicas extras distribuídas em 5 coleções que marcaram gerações.
           </div>
 
-          <p class="plan-old-price">De R$ 197,00</p>
-          <div class="plan-price">R$ 99,00</div>
+          <p class="plan-old-price">De R$ 149,90</p>
+          <div class="plan-price">R$ 37,00</div>
           <p class="plan-price-note">Pagamento único</p>
-          <div class="plan-economy">Economize mais de 50%</div>
+          <div class="plan-economy">Economize mais de 75%</div>
 
-          <a href="#" class="btn btn-gold btn-full btn-premium" data-pix-trigger data-pix-price="99.00" data-pix-plan="Acervo Flashback Completo" style="margin-top:4px;">
+          <a href="#" class="btn btn-gold btn-full btn-premium" style="margin-top:4px;">
             QUERO O PACOTE COMPLETO
           </a>
         </div>
@@ -2410,10 +2381,10 @@
       
       <!-- Botões de Ação -->
       <div class="modal-actions">
-        <a href="#" class="btn btn-gold btn-full btn-upsell-accept" data-pix-trigger data-pix-price="25.90" data-pix-plan="Acervo Completo (Desconto Upsell)">
+        <a href="#" class="btn btn-gold btn-full btn-upsell-accept">
           SIM, QUERO O PACOTE COMPLETO COM DESCONTO
         </a>
-        <a href="#" class="btn-upsell-decline" data-pix-trigger data-pix-price="9.90" data-pix-plan="Acervo Essencial">
+        <a href="#" class="btn-upsell-decline">
           Não, prefiro continuar apenas com o Acervo Essencial por R$ 9,90
         </a>
       </div>
@@ -2421,9 +2392,6 @@
       <p class="modal-footer-note">🔒 Compra segura e garantida por 7 dias</p>
     </div>
   </div>
-
-  <!-- Script da API Pix ParadisePags -->
-  <script src="app.js"></script>
 
 </body>
 </html>
